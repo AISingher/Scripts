@@ -2,7 +2,7 @@
 import praw
 import time
 
-reddit = praw.Reddit()
+reddit = praw.Reddit(#auth)
 
 words_to_check = ['teh','thee','thw','thr','th'] #mispelled words to find
 checked_comments = [] #comments checked (id)
