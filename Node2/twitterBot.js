@@ -36,6 +36,7 @@ function tweetIt(txt){//tweet a message from account
 }
 
 var keyword='President';
+console.log("finding recent tweets with keyword...\n");
 findIt(keyword);
 setInterval(findIt(keyword), 1000*60); //find 5 latest tweets with 'President' every 60 secs
 
