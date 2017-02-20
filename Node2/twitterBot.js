@@ -55,5 +55,3 @@ function gotData(err, data, response) { //display tweets
   }
 }
 }
-
-//'since:2011-07-11',
