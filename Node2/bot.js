@@ -1,3 +1,5 @@
+//thanks a user for following the account with a @ reply tweet.
+//displays (5) latest tweets with keyword ('President') on console every (60 secs)
 console.log('The bot is starting.')
 
 var Twit=require('twit'); //import twit package
