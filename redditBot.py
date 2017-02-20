@@ -1,3 +1,4 @@
+#checks for mispelled word "the" in 25 recent reddit posts on a subreddit(r/test) and notifies the incorrect spelling
 import praw
 import time
 
