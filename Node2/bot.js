@@ -1,27 +1,21 @@
-console.log('The bot is starting')
+console.log('The bot is starting.')
 
 var Twit=require('twit'); //import twit package
 
-var config=require('./config');//import api keys
+var config=require('./config');//import api keys, account info
 var T = new Twit(config);//twitter object with keys
 
 var stream = T.stream('user'); //user stream set up
-stream.on('follow',followed);// someone follows account
+stream.on('follow',followed);// when someone follows account
 
-function followed(eventMsg){
-	console.log("follow event");
-	var name= eventMsg.source.name;
+function followed(eventMsg){ //thank follower via reply tweet
+	console.log("New Follower! \n replying...");
+	// var name= eventMsg.source.name;
 	var screenName= eventMsg.source.screen_name;
 	tweetIt('@' + screenName + ' thanks for the follow!');
 }
 
-
-// tweetIt();
-// setInterval(tweetIt, 1000*20); //call tweetIt every 20 secs
-
-function tweetIt(txt){
-
-	// var r = Math.floor(Math.random()*100);
+function tweetIt(txt){//tweet a message from account
 
 	var postParams ={
 		status: txt
@@ -39,17 +33,24 @@ function tweetIt(txt){
 	}
 }
 
+var keyword='President';
+findIt(keyword);
+setInterval(findIt(keyword), 1000*60); //find 5 latest tweets with 'President' every 60 secs
 
-// var getParams = { 
-// 	q: 'bananas since:2011-07-11', //query 
-// 	count: 5 //# tweets returned
-// };
+function findIt(txt){// find latest tweets on twitter with keyword 
+var getParams = { 
+	q: txt,  //query 
+	count: 5 // tweets returned
+};
 
-// T.get('search/tweets', getParams, gotData);
+T.get('search/tweets', getParams, gotData);
 
-// function gotData(err, data, response) { //callback 
-//   var tweets = data.statuses;
-//   for (var i=0; i<tweets.length; i++){
-//   	  console.log(tweets[i].text + "\n");
-//   }
-// };
+function gotData(err, data, response) { //display tweets
+  var tweets = data.statuses;
+  for (var i=0; i<tweets.length; i++){
+  	  console.log(tweets[i].text + "\n");
+  }
+}
+}
+
+//'since:2011-07-11',
